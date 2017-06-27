@@ -11,4 +11,4 @@ module BindingOperators =
         targetPropertyName |> toTarget description
 
     let (>>>>) targetPropertyName description =
-        targetPropertyName |> forProperty description        
+        targetPropertyName |> forProperty description
