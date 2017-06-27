@@ -3,11 +3,8 @@
 open MvvmCross.Binding.BindingContext
 
 module BindingContext = 
-    let bind<'TOwningTarget, 'TSource, 'TChildTarget 
-        when 'TOwningTarget : not struct 
-        and 'TOwningTarget :> IMvxBindingContextOwner
-        and 'TChildTarget : not struct>
-        (childTarget: 'TChildTarget)   
+    let bind
+        childTarget
         (set: MvxFluentBindingDescriptionSet<'TOwningTarget, 'TSource>) =
         set.Bind(childTarget)
 
