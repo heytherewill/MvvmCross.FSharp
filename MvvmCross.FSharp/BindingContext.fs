@@ -5,6 +5,17 @@ open MvvmCross.Binding
 open MvvmCross.Binding.BindingContext
 
 module BindingContext =
+    let createBindingSet<'TTarget, 'TSource 
+        when 'TTarget : not struct 
+        and 'TTarget :> IMvxBindingContextOwner>
+        (target: 'TTarget) =
+        target.CreateBindingSet<'TTarget, 'TSource>()
+    
+    let createBinding<'TTarget when 'TTarget : not struct>
+        (contextOwner: IMvxBindingContextOwner)
+        (target: 'TTarget) =
+        new MvxFluentBindingDescription<'TTarget>(contextOwner, target)
+
     let bind
         childTarget
         (set: MvxFluentBindingDescriptionSet<'TOwningTarget, 'TSource>) =
