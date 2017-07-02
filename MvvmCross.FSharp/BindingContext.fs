@@ -37,6 +37,21 @@ module BindingContext =
         | PropertyGet(_, propertyInfo, _) -> description.For(propertyInfo.Name)
         | _ -> failwith "Invalid property expression"
 
+    let twoWay (description: MvxFluentBindingDescription<'TTarget, 'TSource>) =
+        description.TwoWay()
+
+    let oneWay (description: MvxFluentBindingDescription<'TTarget, 'TSource>) =
+        description.OneWay()
+
+    let oneWayToSource (description: MvxFluentBindingDescription<'TTarget, 'TSource>) =
+        description.OneWayToSource()
+
+    let oneTime (description: MvxFluentBindingDescription<'TTarget, 'TSource>) =
+        description.OneTime()
+    
+    let mode (bindingMode: MvxBindingMode) (description: MvxFluentBindingDescription<'TTarget, 'TSource>) =
+        description.Mode(bindingMode)
+
     let toTarget
         (targetPropertyName: string)
         (description: MvxFluentBindingDescription<'TTarget, 'TSource>)  =
