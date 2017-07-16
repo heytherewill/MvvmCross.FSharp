@@ -2,13 +2,19 @@
  
 open MvvmCross.FSharp.BindingContext
 
-module BindingOperators = 
+module BindingOperators =
 
     let (|>>) set childTarget =
         set |> bind childTarget
+            
+    let (>.) description targetPropertyName =
+        description |> toTarget targetPropertyName
 
-    let (>>) targetPropertyName description =
-        targetPropertyName |> toTarget description
+    let (>>) description quotation =
+        description |> toExpression quotation
 
-    let (>>>>) targetPropertyName description =
-        targetPropertyName |> forProperty description
+    let (>>>.) description targetPropertyName =
+        description |> forProperty targetPropertyName
+
+    let (>>>>) description quotation =
+        description |> forExpression quotation
