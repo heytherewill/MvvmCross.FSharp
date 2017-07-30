@@ -1,6 +1,12 @@
 # MvvmCross.FSharp
 :nail_care: Extensions to make MvvmCross bindings more F#-ish
 
+## Installation
+
+Install via [NuGet](https://www.nuget.org/packages/MvvmCross.FSharp/) using:
+
+``PM> Install-Package MvvmCross.FSharp``
+
 ## wat?
 
 This is what bindings in F# look like:
@@ -42,6 +48,7 @@ apply set
 
 `<|` ALSO PIPES `|>`
 
+
 ## DSL
 
 You can also use a DSL based on the operators:
@@ -65,7 +72,5 @@ apply set
 
 ## What's next?
 
-- Publishing to NuGet
-- Use FAKE to automate publishing
 - Strongly typed binding names for the bindings provided out-of-the-box
-- Make the DSL even better
+- Make the DSL even better®
