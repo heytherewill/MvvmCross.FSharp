@@ -1,0 +1,8 @@
+NUGET
+  remote: https://www.nuget.org/api/v2
+    FAKE (4.63)
+    MvvmCross.Binding (5.1.1)
+      MvvmCross.Core (5.1.1)
+    MvvmCross.Core (5.1.1)
+      MvvmCross.Platform (5.1.1)
+    MvvmCross.Platform (5.1.1)
