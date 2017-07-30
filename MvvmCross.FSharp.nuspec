@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+    <metadata>
+        <id>MvvmCross.FSharp</id>
+        <version>0.1</version>
+        <authors>William Barbosa</authors>
+        <projectUrl>https://github.com/willsb/MvvmCross.FSharp</projectUrl>
+        <requireLicenseAcceptance>false</requireLicenseAcceptance>
+        <description>Extensions to make MvvmCross bindings more F#-ish</description>
+        <copyright />
+        <language />
+        <tags>mvvm mvvmcross xamarin mvx fsharp quotations binding extensions</tags>
+        <dependencies>
+            <dependency id="MvvmCross.Binding" version="5.0.5" />
+        </dependencies>
+    </metadata>
+    <files>
+        <file src="build/lib/*.*" target="lib" />
+    </files>
+</package>
