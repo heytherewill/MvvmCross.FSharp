@@ -2,3 +2,4 @@ source https://nuget.org/api/v2
 
 nuget MvvmCross.Binding >= 5.1.1
 nuget FAKE
+nuget Http.fs  
