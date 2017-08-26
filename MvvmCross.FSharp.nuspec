@@ -11,7 +11,7 @@
         <language />
         <tags>mvvm mvvmcross xamarin mvx fsharp quotations binding extensions</tags>
         <dependencies>
-            <dependency id="MvvmCross.Binding" version="5.0.5" />
+            <dependency id="MvvmCross.Binding" version="5.1.1" />
         </dependencies>
     </metadata>
     <files>
