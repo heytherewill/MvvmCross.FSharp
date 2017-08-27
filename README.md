@@ -70,7 +70,21 @@ set |>> source >>>> <@ source.SelectionChangedCommand @> >> <@ this.ViewModel.My
 apply set
 ```
 
+## Framework provided bindings
+
+A [script](https://github.com/willsb/MvvmCross.FSharp/blob/master/scrape.fsx) scrapes the MvvmCross source code and generates a source file that provides type safe `for` methods for each of the default-framework-provided bindings. This allows you to use bindings that are provided by the framework in a type safe way, like this:
+
+```
+open MvvmCross.FSharp.iOS.PropertyBinding
+
+set
+|> bind myButton
+|> forTouchDown
+|> toExpression <@ this.ViewModel.MyCommand @> 
+|> ignore
+```
+
 ## What's next?
 
-- Strongly typed binding names for the bindings provided out-of-the-box
 - Make the DSL even better®
+- Turn the scrape script into a Type Provider
