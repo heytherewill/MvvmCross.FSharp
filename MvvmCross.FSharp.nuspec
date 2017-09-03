@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
     <metadata>
         <id>MvvmCross.FSharp</id>
-        <version>0.2</version>
+        <version>0.2.1</version>
         <authors>William Barbosa</authors>
         <projectUrl>https://github.com/willsb/MvvmCross.FSharp</projectUrl>
         <requireLicenseAcceptance>false</requireLicenseAcceptance>
@@ -15,6 +15,6 @@
         </dependencies>
     </metadata>
     <files>
-        <file src="build/lib/*.*" target="lib" />
+        <file src="build/lib/**" target="lib" />
     </files>
 </package>
