@@ -1,10 +1,18 @@
 ﻿namespace MvvmCross.FSharp
 
+open Microsoft.FSharp.Quotations
 open Microsoft.FSharp.Quotations.Patterns
 open MvvmCross.Binding
+open MvvmCross.Binding.Combiners
 open MvvmCross.Binding.BindingContext
 
 module BindingContext =
+
+    let private propertyPathFrom quotation =
+        match quotation with
+        | PropertyGet(_, propertyInfo, _) -> propertyInfo.Name
+        | _ -> failwith "Invalid property expression"
+
     let createBindingSet<'TTarget, 'TSource 
         when 'TTarget : not struct 
         and 'TTarget :> IMvxBindingContextOwner>
@@ -30,12 +38,11 @@ module BindingContext =
         when 'TTarget : not struct
         and 'TSource : not struct
         and 'T : not struct>
-        (quotation: Quotations.Expr)
+        (quotation: Expr)
         (description: MvxFluentBindingDescription<'TTarget, 'TSource>) =
-        
-        match quotation with
-        | PropertyGet(_, propertyInfo, _) -> description.For(propertyInfo.Name)
-        | _ -> failwith "Invalid property expression"
+        quotation
+        |> propertyPathFrom
+        |> description.For
 
     let twoWay (description: MvxFluentBindingDescription<'TTarget, 'TSource>) =
         description.TwoWay()
@@ -61,12 +68,36 @@ module BindingContext =
         when 'TTarget : not struct
         and 'TSource : not struct
         and 'T : not struct>
-        (quotation: Quotations.Expr)
+        (quotation: Expr)
         (description: MvxFluentBindingDescription<'TTarget, 'TSource>) =
         
-        match quotation with
-        | PropertyGet(_, propertyInfo, _) -> description.To(propertyInfo.Name)
-        | _ -> failwith "Invalid property expression"
+        quotation
+        |> propertyPathFrom
+        |> description.To
+
+    let byCombiningExpressions
+        (combiner : IMvxValueCombiner)
+        (expressions: Expr array)
+        (description: MvxFluentBindingDescription<'TTarget, 'TSource>) =
+        description.ByCombining(combiner, expressions |> Array.map propertyPathFrom)
+
+    let byCombiningNameAndExpressions
+        (combinerName : string)
+        (expressions: Expr array)
+        (description: MvxFluentBindingDescription<'TTarget, 'TSource>) =
+        description.ByCombining(combinerName, expressions |> Array.map propertyPathFrom)
+
+    let byCombiningFreeText
+        (combiner : IMvxValueCombiner)
+        (properties: string array)
+        (description: MvxFluentBindingDescription<'TTarget, 'TSource>) =
+        description.ByCombining(combiner, properties)
+
+    let byCombiningNameAndFreeText
+        (combinerName : string)
+        (properties: string array)
+        (description: MvxFluentBindingDescription<'TTarget, 'TSource>) =
+        description.ByCombining(combinerName, properties)
 
     let apply (set: MvxFluentBindingDescriptionSet<'TOwningTarget, 'TSource>) =
         set.Apply()
